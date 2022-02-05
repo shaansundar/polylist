@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require('dotenv').config()
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -17,5 +18,14 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
+  defaultNetwork: "matic",
+  networks: {
+    hardhat: {
+    },
+    matic: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      accounts: [process.env.PRIV_KEY]
+    }
+  },
   solidity: "0.8.4",
 };

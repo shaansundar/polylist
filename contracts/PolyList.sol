@@ -22,6 +22,7 @@ contract PolyList {
         address payable dev;
     }
     enum Role{
+        none,
         dev,
         recruiter
     }
