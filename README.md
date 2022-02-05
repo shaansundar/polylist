@@ -1,15 +1,20 @@
-# Basic Sample Hardhat Project
+# PolyList
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+PolyList is a decentralised freelance hiring DApp built with trustless escrow contracts & payment streams (Using Superfluid)
 
-Try running some of the following tasks:
+### Description
+Existing spaces like UpWork & Freelance.com successfully solve the challenge of hiring unknown developers as "Freelancers" for a client's project, whilst assuring payment for the work done. Here, they privately act as escrows, and have been doing a fantastic job!
 
-```shell
-npx hardhat accounts
+However, some issues still posses:
+1) **High Fees**: These platforms tend to charge anywhere from 5-20% of the promised payment as a service charge
+2) **Trust**: Trusting in a single organisation always lead to flaws and vulnerabilities
+3) **No Streaming**: Developers do not get paid in real time streaming.... Web3 can boastfully do that, and make sure the developer's time is valued, no matter if the work is accepted or not 
+
+### How it's made
+This project uses ReactJS along with AntD for a smooth frontend experience, and EthersJS for providing a connectivity for the solidity contracts which leverages the powerful use-cases blockchain offers. It also uses Superfluid SDK to optionally open payment streams if that interests the recruiter!
+
+### Get started with this contract
+```bash
 npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+npx hardhat deploy
 ```
