@@ -1,6 +1,4 @@
 import React from 'react';
-import { ethers } from "ethers";
-import { sequence } from '0xsequence'
 
 const Card = (props) => {
     const [IsOpen, setIsOpen] = React.useState(false);
@@ -21,7 +19,7 @@ const Card = (props) => {
         // let data = props.abi.encodeFunctionData(
         //     'submitProposal', [link, contact, id]
         //   )
-        const waveTxn = await props.gameContract.submitProposal(link, contact, id)
+        const waveTxn = await gameContract.submitProposal(link, contact, id)
         await waveTxn.wait();
         alert("Mined -- ", waveTxn.hash);
         //   const tx = {

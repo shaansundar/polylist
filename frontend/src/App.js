@@ -2,7 +2,6 @@ import JobBoard from './components/JobBoard';
 import './App.css';
 import Header from './components/Header';
 import NewJob from './components/NewJob';
-import { sequence } from '0xsequence'
 import React from 'react';
 
 function App() {
