@@ -11,7 +11,7 @@ const wallet = new sequence.Wallet('mumbai');
 console.log("🚀 ~ file: JobBoard.jsx ~ line 8 ~ wallet", wallet)
 const provider = wallet.getProvider();
 console.log("🚀 ~ file: JobBoard.jsx ~ line 10 ~ provider", provider)
-const signer = provider.getSigner();
+const signer = wallet.getSigner();
 console.log("🚀 ~ file: JobBoard.jsx ~ line 12 ~ signer", signer)
 
 const gameContract = new ethers.Contract(
@@ -19,6 +19,13 @@ const gameContract = new ethers.Contract(
 	PolyList.abi,
 	provider
 );
+
+const gameContractSigned = new ethers.Contract(
+	ContractAddress,
+	PolyList.abi,
+	signer
+);
+
 console.log("🚀 ~ file: JobBoard.jsx ~ line 21 ~ gameContract", gameContract)
 
 
@@ -38,6 +45,10 @@ const JobBoard = () => {
 				price={`${item[4]*10**(-18)} MATIC`}
 				gitLink={item[5]}
 				isOpen={item[6]}
+				gameContract = {gameContractSigned}
+				signer = {signer}
+				abi = {PolyList}
+				address = {ContractAddress}
 			/>)))
 		}
 		allOpenJobs();
