@@ -1,5 +1,6 @@
 # PolyList
 
+### [Click Here](https://github.com/shaansundar/polylist-scaffold) for the Scaffold Eth version!
 PolyList is a decentralised freelance hiring DApp built with trustless escrow contracts & payment streams (Using Superfluid)
 
 ### Description
