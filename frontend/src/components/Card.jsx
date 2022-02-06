@@ -25,7 +25,7 @@ const Card = (props) => {
                 
                 <button className="w-40 mt-4 text-black h-10">Open Job</button>
                 {props.isOpen && <button className="w-40 mt-4 mx-4 text-white h-10 bg-black" onClick={async()=>{setIsOpen(!IsOpen)}}>Submit Work</button>}
-                {!props.isOpen && <button className="w-40 mt-4 mx-4 text-white h-10 bg-gray-600">Work Closed</button>}
+                {!props.isOpen && <button className="w-40 mt-4 mx-4 text-white h-10 bg-gray-600 cursor-not-allowedß">Work Closed</button>}
             </div>
             
         </div>

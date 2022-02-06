@@ -13,7 +13,6 @@ contract PolyList {
         uint price;
         string gitLink;
         bool isOpen;
-        uint closingDate;
     }
     struct submissionDetails{
         uint submissionId;
@@ -48,12 +47,11 @@ contract PolyList {
     function newJob(
         string memory job,
         string memory description,
-        string memory gitLink,
-        uint closingDate
+        string memory gitLink
     ) public payable returns(bool){
         require(registeredRoles[msg.sender] == Role.recruiter, "Only Recruiters can create roles");
         require(msg.value != 0, "No zero payment jobs");
-        allJobs.push(jobDetails(job, msg.sender, (allJobs.length),description, msg.value, gitLink, true, closingDate));
+        allJobs.push(jobDetails(job, msg.sender, (allJobs.length),description, msg.value, gitLink, true));
     }
 
     function getAllJobs() public view returns(jobDetails[] memory jobs){
