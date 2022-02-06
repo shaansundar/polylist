@@ -4,12 +4,13 @@ import React from 'react';
 
 const Header = () => {
     const [wallletStatus, setwallletStatus] = React.useState(null);
-    const wallet = new sequence.Wallet('polygon')
+    const wallet = new sequence.Wallet('mumbai')
     const connectDetails = async () => {
         await wallet.connect()
         const walletID = await wallet.getAddress();
         setwallletStatus(walletID)
     }
+
 
 
     console.log('=> connected?', connectDetails.connected)

@@ -1,27 +1,56 @@
 import Card from "./Card";
 import { ethers } from "ethers";
 import { sequence } from '0xsequence';
+import PolyList from '../PolyList.json';
+import React, { useState } from 'react';
 
 const ContractAddress = "0x0C16777448660594A082293a90af3eb9241561B1";
 
+const wallet = new sequence.Wallet('mumbai');
+
+console.log("🚀 ~ file: JobBoard.jsx ~ line 8 ~ wallet", wallet)
+const provider = wallet.getProvider();
+console.log("🚀 ~ file: JobBoard.jsx ~ line 10 ~ provider", provider)
+const signer = provider.getSigner();
+console.log("🚀 ~ file: JobBoard.jsx ~ line 12 ~ signer", signer)
+
+const gameContract = new ethers.Contract(
+	ContractAddress,
+	PolyList.abi,
+	provider
+);
+console.log("🚀 ~ file: JobBoard.jsx ~ line 21 ~ gameContract", gameContract)
+
+
+
 const JobBoard = () => {
-    const wallet = new sequence.Wallet('polygon');
-    return ( 
-        <div className=" w-5/6 min-h-screen flex flex-col items-center justify-start mt-4">
-            <Card 
-                job="Develop Solidity" 
-                recruiter="0xE22c6584D5b43c536d6FC26898d1275243cBb882" 
-                jobID="2" 
-                description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam animi quae, cupiditate facilis incidunt id sint, temporibus ipsam quibusdam laborum sit. Tempore molestiae similique, quaerat eius id ratione quae sint? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam animi quae, cupiditate facilis incidunt id sint, temporibus ipsam quibusdam laborum sit. Tempore molestiae similique, quaerat eius id ratione quae sint? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam animi quae, cupiditate facilis incidunt id sint, temporibus ipsam quibusdam laborum sit. Tempore molestiae similique, quaerat eius id ratione quae sint? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam animi quae, cupiditate facilis incidunt id sint, temporibus ipsam quibusdam laborum sit. Tempore molestiae similique, quaerat eius id ratione quae sint?" 
-                price="100 MATIC"
-                gitLink="https://github.com/job1"
-                isOpen = {true}
-                closingDate = "Dec 27 2022"
-            />
-        </div>
-     );
+	const [allJobs, setallJobs] = useState(null);
+	const [getCards, setgetCards] = useState(null);
+		const allOpenJobs = async () => {
+			console.log('chainId:', await wallet.getChainId())
+			let allOpenJobs = await gameContract.getAllJobs()
+			setallJobs(allOpenJobs);
+			setgetCards( allJobs.map((item)=>(	<Card
+				job={item[0]}
+				recruiter={item[1]}
+				jobID={`${item[2]}`}
+				description={item[3]}
+				price={`${item[4]*10**(-18)} MATIC`}
+				gitLink={item[5]}
+				isOpen={item[6]}
+			/>)))
+		}
+		allOpenJobs();
+
+	
+
+	return (
+		<div className=" w-5/6 min-h-screen flex flex-col items-center justify-start mt-4">
+			{getCards}
+		</div>
+	);
 }
- 
+
 export default JobBoard;
 
 // string job;
